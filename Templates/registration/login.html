@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div class="w-full bg-white border-[#F45F1D] border rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Login
+            </h1>
+            <form method="post" class="space-y-4 md:space-y-6" >
+                {% csrf_token %}
+                <div>
+                    <label for="ID_username"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Utilizador</label>
+                    <input type="text" name="username" id="id_username" class=" rounded-lg border-[#F45F1D] flex-1 appearance-none border w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-[#F45F1D]" placeholder="nome de utilizador" required="">
+                </div>
+                <div>
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                    <input type="password" name="password" id="password" placeholder="••••••••" class=" rounded-lg border-[#F45F1D] flex-1 appearance-none border w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-[#F45F1D]" required="">
+                </div>
+                <button class="flex-shrink-0 px-4 py-2 text-base font-semibold border-2 border-[#F45F1D] text-white bg-[#F45F1D] rounded-lg hover:bg-white hover:text-[#F45F1D] hover:border-[#F45F1D] hover:border-2" type="submit">
+                    Login
+                </button>            
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

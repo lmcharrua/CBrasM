@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    <div class="max-h-fit w-full">
+        <div class="flex flex-row mb-1 sm:mb-0 justify-between w-full overflow-auto">
+            <a href="{% url 'clientes:clientes-create' %}">
+                <button class="flex-shrink-0 px-4 py-2 text-base font-semibold border-2 border-[#F45F1D] text-white bg-[#F45F1D] rounded-lg hover:bg-white hover:text-[#F45F1D] hover:border-[#F45F1D] hover:border-2" type="submit">
+                    Novo Cliente
+                </button>
+            </a>
+            <div class="text-end">
+                <form  method="get"class="flex flex-col md:flex-row w-3/4 md:w-full max-w-sm md:space-x-3 space-y-3 md:space-y-0 justify-center">
+                    <div class=" relative ">
+                        <input type="text" name="nome" id="id_nome" class=" rounded-lg border-[#F45F1D] flex-1 appearance-none border w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-[#F45F1D]" placeholder="nome"/>
+                    </div>
+                    <button class="flex-shrink-0 px-4 py-2 text-base font-semibold border-2 border-[#F45F1D] text-white bg-[#F45F1D] rounded-lg hover:bg-white hover:text-[#F45F1D] hover:border-[#F45F1D] hover:border-2" type="submit">
+                        pesquisar
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="h-3/5 sm:-mx-8 px-4 sm:px-8 py-3 overflow-auto">
+            <table class="min-w-full leading-normal">
+                <thead>
+                    <tr>
+                        <th scope="col" class="px-3 py-3 bg-white  border-b border-[#F45F1D] text-gray-800  text-left text-sm uppercase font-normal">
+                        </th>
+                        <th scope="col" class="px-3 py-3 bg-white  border-b border-[#F45F1D] text-gray-800  text-left text-sm uppercase font-normal">
+                            Nome
+                        </th>
+                        <th scope="col" class="px-3 py-3 bg-white  border-b border-[#F45F1D] text-gray-800  text-left text-sm uppercase font-normal">
+                            Data Nascimento
+                        </th>
+                        <th scope="col" class="px-3 py-3 bg-white  border-b border-[#F45F1D] text-gray-800  text-left text-sm uppercase font-normal">
+                            Nº Telefone
+                        </th>
+                        <th scope="col" class="px-3 py-3 bg-white  border-b border-[#F45F1D] text-gray-800  text-left text-sm uppercase font-normal">
+                            email
+                        </th>
+                        <th scope="col" class="px-3 py-3 bg-white  border-b border-[#F45F1D] text-gray-800  text-left text-sm uppercase font-normal">
+                        </th>
+                        <th scope="col" class="px-3 py-3 bg-white  border-b border-[#F45F1D] text-gray-800  text-left text-sm uppercase font-normal">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Cliente in object_list %}
+                    <tr>
+                        <td class="border-b border-[#F45F1D] bg-white text-sm">
+                            <a href="{% url 'clientes:clientes-detail' Cliente.pk %}" title="Ver detalhes">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1" stroke="black" class="w-6 h-6 hover:stroke-[#F45F1D]">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td class="px-2 py-3 border-b border-[#F45F1D] bg-white text-sm">
+                            {{ Cliente.nome }}
+                        </td>
+                        <td class="px-2 py-3 border-b border-[#F45F1D] bg-white text-sm">
+                            {{ Cliente.DataNasc }}
+                        </td>
+                        <td class="px-2 py-3 border-b border-[#F45F1D] bg-white text-sm">
+                            {{ Cliente.Tel }}
+                        </td>
+                        <td class="px-2 py-3 border-b border-[#F45F1D] bg-white text-sm">
+                            {{ Cliente.email }}
+                        </td>
+                        <td class="border-b border-[#F45F1D] bg-white text-sm">
+                            <a href="{% url 'clientes:tratamento-create' Cliente.pk %}" class="text-indigo-600 hover:text-indigo-900" title="Tratamento">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1" stroke="black" class="w-6 h-6 hover:stroke-[#F45F1D] rotate-180">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712l.003-2.024a.668.668 0 01.198-.471 1.575 1.575 0 10-2.228-2.228 3.818 3.818 0 00-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0116.35 15m.002 0h-.002" />
+                                    </svg>
+                            </a>
+                        </td>
+                        <td class="border-b border-[#F45F1D] bg-white text-sm">
+                            <a href="#" class="text-indigo-600 hover:text-indigo-900" title="Agendar">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1" stroke="black" class="w-6 h-6 hover:stroke-[#F45F1D]">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>               
+        </div>
+    </div>
+
+
+{% endblock content %}
